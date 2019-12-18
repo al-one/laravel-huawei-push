@@ -49,15 +49,8 @@ class HuaweiPushChannel
         $cfg = $this->getConfig($this->config,$pkg);
         /** @var $notification Notification|HuaweiNotification */
         $msg = $notification->toHuaweiPush($notifiable,$cfg);
-        $app = new Huawei\Application(
-            data_get($cfg,'appid'),
-            data_get($cfg,'secret'),
-            Huawei\Constants::HW_TOKEN_SERVER,
-            Huawei\Constants::HW_PUSH_SERVER
-        );
-
+        $app = new HuaweiPushApplication(data_get($cfg,'appid'),data_get($cfg,'secret'));
         $msg->token((array)$sto); // 推送目标
-        $msg->buildFields();
         $ret = $app->push_send_msg($mdt = $msg->getFields());
         $eno = data_get($ret,'code');
         if($eno != '80000000')
