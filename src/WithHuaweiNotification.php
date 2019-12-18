@@ -16,7 +16,7 @@ trait WithHuaweiNotification
         if(isset($this->handler) && is_callable($this->handler))
         {
             $fun = $this->handler;
-            $fun($msg,$notifiable,$cfg,false);
+            $fun($msg,$notifiable,$cfg);
         }
         $msg->buildFields();
         Facades\Log::debug("huawei push msg",[$msg->getFields()]);
