@@ -85,6 +85,7 @@ $msg = (new HuaweiNotification)
     ->setHandler(function($msg,$notifiable,$cfg)
     {
         $msg->ttl(86400);
+        $msg->channel_id(8888);
     });
 
 $user->notify($msg);

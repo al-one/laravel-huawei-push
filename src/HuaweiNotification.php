@@ -64,16 +64,6 @@ class HuaweiNotification extends Notification implements ShouldQueue
         return $this->getOrSet(__FUNCTION__,$set);
     }
 
-    public function sound($set = null)
-    {
-        return $this->getOrSet(__FUNCTION__,$set);
-    }
-
-    public function ttl($set = null)
-    {
-        return $this->getOrSet(__FUNCTION__,$set);
-    }
-
     protected function getOrSet($key,$val = null)
     {
         if(isset($val))

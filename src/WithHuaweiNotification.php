@@ -18,7 +18,6 @@ trait WithHuaweiNotification
             $fun = $this->handler;
             $fun($msg,$notifiable,$cfg);
         }
-        $msg->buildFields();
         Facades\Log::debug("huawei push msg",[$msg->getFields()]);
         return $msg;
     }

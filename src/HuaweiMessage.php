@@ -86,7 +86,7 @@ class HuaweiMessage
     public function __call($fun,$args)
     {
         $has = false;
-        if(!in_array($fun,['notification','click_action','buildFields','getFields']))
+        if(!in_array($fun,['notification','click_action']))
         {
             if(method_exists($this->clickAction,$fun) || in_array($fun,['clickType']))
             {
