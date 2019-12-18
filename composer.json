@@ -1,0 +1,31 @@
+{
+    "name": "al-one/laravel-huawei-push",
+    "description": "Huawei Push For Laravel Notifications",
+    "keywords": ["laravel", "illuminate", "notifications", "huawei", "huawei-push"],
+    "authors": [
+        {
+            "name": "Alone",
+            "email": "hi@anlo.ng"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/contracts": "^5.3 || ^6.0",
+        "illuminate/support": "^5.3 || ^6.0",
+        "illuminate/notifications": "^5.3 || ^6.0",
+        "opis/closure": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alone\\LaravelHuaweiPush\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alone\\LaravelHuaweiPush\\ServiceProvider"
+            ]
+        }
+    },
+    "license": "MIT"
+}
