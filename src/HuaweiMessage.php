@@ -2,6 +2,14 @@
 
 namespace Alone\LaravelHuaweiPush;
 
+/**
+ * @mixin Huawei\Message
+ * @mixin Huawei\Notification
+ * @mixin Huawei\AndroidNotification
+ * @mixin Huawei\AndroidConfig
+ * @mixin Huawei\ClickAction
+ * @method void clickType($value)
+ */
 class HuaweiMessage
 {
 
