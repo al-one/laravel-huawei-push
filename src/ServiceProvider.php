@@ -32,7 +32,7 @@ class ServiceProvider extends BaseServiceProvider
              */
             $channel->extend('huawei_push',function(Application $app)
             {
-                return new HuaweiNotification('huawei_push');
+                return new HuaweiPushChannel('huawei_push');
             });
 
             return $channel;
