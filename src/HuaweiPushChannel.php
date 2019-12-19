@@ -33,20 +33,18 @@ class HuaweiPushChannel
             {
                 return false;
             }
-            if(method_exists($notifiable,'getAppPackage'))
-            {
-                $pkg = $notifiable->getAppPackage();
-            }
-            else
-            {
-                $pkg = data_get($notifiable,'app_package');
-            }
+            $pkg = $this->getAppPackage($notifiable);
         }
         else
         {
             $sto = $notifiable;
         }
         $cfg = $this->getConfig($this->config,$pkg);
+        if(!data_get($cfg,'secret'))
+        {
+            Facades\Log::warning("huawei push error: none config \t",compact('pkg','cfg','sto'));
+            return false;
+        }
         /** @var $notification Notification|HuaweiNotification */
         $msg = $notification->toHuaweiPush($notifiable,$cfg);
         $app = new HuaweiPushApplication(data_get($cfg,'appid'),data_get($cfg,'secret'));
@@ -62,6 +60,19 @@ class HuaweiPushChannel
             Facades\Log::debug("huawei push success \t",compact('mdt','ret','sto'));
         }
         return $ret;
+    }
+
+    public function getAppPackage($notifiable)
+    {
+        if(method_exists($notifiable,'getAppPackage'))
+        {
+            $pkg = $notifiable->getAppPackage();
+        }
+        else
+        {
+            $pkg = data_get($notifiable,'app_package');
+        }
+        return $pkg;
     }
 
     public function getConfig($pkg = null,$dvc = null)
