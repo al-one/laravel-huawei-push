@@ -78,14 +78,18 @@ class User extends Model
 <?php
 use Illuminate\Support\Facades\Notification;
 use Alone\LaravelHuaweiPush\HuaweiNotification;
+use Alone\LaravelHuaweiPush\HuaweiMessage;
 
 $msg = (new HuaweiNotification)
     ->title('通知标题')
     ->body('通知内容')
-    ->setHandler(function($msg,$notifiable,$cfg)
+    ->setHandler(function($msg,$notifiable,$cfg,$type = null)
     {
-        $msg->ttl(86400);
-        $msg->channel_id(8888);
+        if($msg instanceof HuaweiMessage)
+        {
+            $msg->ttl(86400);
+            $msg->channel_id(8888);
+        }
     });
 
 $user->notify($msg);
