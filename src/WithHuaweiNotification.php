@@ -2,8 +2,6 @@
 
 namespace Alone\LaravelHuaweiPush;
 
-use Illuminate\Support\Facades;
-
 trait WithHuaweiNotification
 {
 
@@ -16,9 +14,8 @@ trait WithHuaweiNotification
         if(isset($this->handler) && is_callable($this->handler))
         {
             $fun = $this->handler;
-            $fun($msg,$notifiable,$cfg);
+            $fun($msg,$notifiable,$cfg,'huawei');
         }
-        Facades\Log::debug("huawei push msg",[$msg->getFields()]);
         return $msg;
     }
 

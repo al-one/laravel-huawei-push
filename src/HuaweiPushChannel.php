@@ -11,7 +11,7 @@ class HuaweiPushChannel
 
     protected $config;
 
-    public function __construct($cfg = [])
+    public function __construct($cfg = 'huawei_push')
     {
         is_string($cfg) && $cfg = config("services.$cfg") ?: [];
         $this->config = (array)$cfg;
