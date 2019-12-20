@@ -39,7 +39,7 @@ class HuaweiPushChannel
         {
             $sto = $notifiable;
         }
-        $cfg = $this->getConfig($this->config,$pkg);
+        $cfg = $this->getConfig($pkg);
         if(!data_get($cfg,'secret'))
         {
             Facades\Log::warning("huawei push error: none config \t",compact('pkg','cfg','sto'));
