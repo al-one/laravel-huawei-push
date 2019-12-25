@@ -90,6 +90,7 @@ $msg = (new HuaweiNotification)
             $msg->ttl(86400);
             $msg->channel_id(8888);
         }
+        return $msg;
     });
 
 $user->notify($msg);
