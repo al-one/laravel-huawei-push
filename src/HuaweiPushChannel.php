@@ -53,11 +53,18 @@ class HuaweiPushChannel
         $eno = data_get($ret,'code');
         if($eno != '80000000')
         {
-            Facades\Log::warning("huawei push error \t",compact('eno','ret','sto','mdt'));
+            if($eno == '80100000')
+            {
+                Facades\Log::notice("huawei push success with illegal_tokens \t",compact('eno','ret','mdt'));
+            }
+            else
+            {
+                Facades\Log::warning("huawei push error \t",compact('eno','ret','mdt'));
+            }
         }
         else
         {
-            Facades\Log::debug("huawei push success \t",compact('mdt','ret','sto'));
+            Facades\Log::debug("huawei push success \t",compact('eno','ret','mdt'));
         }
         return $ret;
     }
