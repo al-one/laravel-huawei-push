@@ -14,27 +14,27 @@ class HuaweiMessage
 {
 
     /**
-     * @link https://developer.huawei.com/consumer/cn/service/hms/catalog/huaweipush_v3.html?page=hmssdk_huaweipush_api_reference_messagesend#Message
+     * @link https://developer.huawei.com/consumer/cn/doc/development/HMS-References/push-server-send#Message
      */
     public $message;
 
     /**
-     * https://developer.huawei.com/consumer/cn/service/hms/catalog/huaweipush_v3.html?page=hmssdk_huaweipush_api_reference_messagesend#Notification
+     * @link https://developer.huawei.com/consumer/cn/doc/development/HMS-References/push-server-send#Notification
      */
     public $notification;
 
     /**
-     * @link https://developer.huawei.com/consumer/cn/service/hms/catalog/huaweipush_v3.html?page=hmssdk_huaweipush_api_reference_messagesend#AndroidNotification
+     * @link https://developer.huawei.com/consumer/cn/doc/development/HMS-References/push-server-send#AndroidNotification
      */
     public $androidNotification;
 
     /**
-     * @link https://developer.huawei.com/consumer/cn/service/hms/catalog/huaweipush_v3.html?page=hmssdk_huaweipush_api_reference_messagesend#AndroidConfig
+     * @link https://developer.huawei.com/consumer/cn/doc/development/HMS-References/push-server-send#AndroidConfig
      */
     public $androidConfig;
 
     /**
-     * @link https://developer.huawei.com/consumer/cn/service/hms/catalog/huaweipush_v3.html?page=hmssdk_huaweipush_api_reference_messagesend#ClickAction
+     * @link https://developer.huawei.com/consumer/cn/doc/development/HMS-References/push-server-send#ClickAction
      */
     public $clickAction;
 
@@ -49,6 +49,7 @@ class HuaweiMessage
         //$this->androidNotification->notify_summary('');
         //$this->androidNotification->sound('');
         //$this->androidNotification->channel_id('');
+        $this->androidNotification->badge((object)[]);
         $this->androidNotification->style(0);
         $this->androidNotification->notify_id(rand(1,5));
         $this->androidNotification->auto_clear(86400);

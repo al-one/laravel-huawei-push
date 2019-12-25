@@ -18,7 +18,7 @@ class HuaweiPushChannel
     }
 
     /**
-     * 发送小米推送
+     * 华为推送
      *
      * @param  mixed  $notifiable
      * @param  \Illuminate\Notifications\Notification  $notification
