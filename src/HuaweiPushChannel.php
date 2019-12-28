@@ -48,18 +48,32 @@ class HuaweiPushChannel
         /** @var $notification Notification|HuaweiNotification */
         $msg = $notification->toHuaweiPush($notifiable,$cfg);
         $app = new HuaweiPushApplication(data_get($cfg,'appid'),data_get($cfg,'secret'));
-        $msg->token((array)$sto); // 推送目标
+        $sts = (array)($sto ?: []);
+        $msg->token($sts); // 推送目标
         $ret = $app->push_send_msg($mdt = $msg->getFields());
         $eno = data_get($ret,'code');
         if($eno != '80000000')
         {
-            if($eno == '80100000')
+            $rts = [];
+            if($eno == '80300007')
             {
+                $rts = $sts;
+                Facades\Log::notice("huawei push with illegal_token \t",compact('eno','ret','mdt'));
+            }
+            elseif($eno == '80100000')
+            {
+                $edt = data_get($ret,'msg');
+                $edt = is_array($edt) ? $edt : (json_decode($edt,true) ?: []);
+                $rts = data_get($edt,'illegal_tokens') ?: [];
                 Facades\Log::notice("huawei push success with illegal_tokens \t",compact('eno','ret','mdt'));
             }
             else
             {
                 Facades\Log::warning("huawei push error \t",compact('eno','ret','mdt'));
+            }
+            if($rts && method_exists($notifiable,'invalidNotificationRouters'))
+            {
+                $notifiable->invalidNotificationRouters($this,$rts,'token');
             }
         }
         else
